@@ -18,18 +18,29 @@ public class Usuario {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
+    @Column(nullable = false, length = 50)
     private String nombre;
     
-    @Column(name = "correo_electronico")
+    @Column(name = "correo_electronico", nullable = false, length = 35)
     private String correoElectronico;
     
+    @Column(nullable = false, length = 20)
     private String contrasena;
+
+    @Column(nullable = false)
     private Date fecha_registro;
 
     @OneToMany(mappedBy = "usuario")
     private List<Venta> ventas;
 
     public Usuario() {
+    }
+
+    public Usuario(String nombre, String correoElectronico, String contrasena, Date fecha_registro) {
+        this.nombre = nombre;
+        this.correoElectronico = correoElectronico;
+        this.contrasena = contrasena;
+        this.fecha_registro = fecha_registro;
     }
 
     public Usuario(Long id, String nombre, String correoElectronico, String contrasena, Date fecha_registro) {

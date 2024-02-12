@@ -1,5 +1,6 @@
 package com.venta.cursos.model;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -14,33 +15,35 @@ public class DetalleVenta {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private double total;
+    
+    @Column(nullable = false)
+    private double precio;
 
     @ManyToOne
-    @JoinColumn(name = "id_venta")
+    @JoinColumn(name = "id_venta", nullable = false)
     private Venta venta;
 
     @ManyToOne
-    @JoinColumn(name = "id_curso")
+    @JoinColumn(name = "id_curso", nullable = false)
     private Curso curso;
 
     public DetalleVenta() {
     }
 
-    public DetalleVenta(Long id, double total) {
+    public DetalleVenta(Long id, double precio) {
         this.id = id;
-        this.total = total;
+        this.precio = precio;
     }
 
-    public DetalleVenta(Long id, double total, Venta venta) {
+    public DetalleVenta(Long id, double precio, Venta venta) {
         this.id = id;
-        this.total = total;
+        this.precio = precio;
         this.venta = venta;
     }
 
-    public DetalleVenta(Long id, double total, Venta venta, Curso curso) {
+    public DetalleVenta(Long id, double precio, Venta venta, Curso curso) {
         this.id = id;
-        this.total = total;
+        this.precio = precio;
         this.venta = venta;
         this.curso = curso;
     }
@@ -53,12 +56,12 @@ public class DetalleVenta {
         this.id = id;
     }
 
-    public double getTotal() {
-        return total;
+    public double getPrecio() {
+        return precio;
     }
 
-    public void setTotal(double total) {
-        this.total = total;
+    public void setPrecio(double precio) {
+        this.precio = precio;
     }
 
     public Venta getVenta() {
@@ -79,7 +82,7 @@ public class DetalleVenta {
 
     @Override
     public String toString() {
-        return "DetalleVenta [id=" + id + ", total=" + total + ", venta=" + venta + ", curso=" + curso + "]";
+        return "DetalleVenta [id=" + id + ", precio=" + precio + ", venta=" + venta + ", curso=" + curso + "]";
     }
     
 }

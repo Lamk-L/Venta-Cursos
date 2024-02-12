@@ -3,6 +3,7 @@ package com.venta.cursos.model;
 import java.util.Date;
 import java.util.List;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -16,13 +17,29 @@ public class Curso {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column(nullable = false, length = 40)
     private String titulo;
+
+    @Column(nullable = false, length = 80)
     private String descripcion;
+
+    @Column(nullable = false)
     private Double precio;
+
+    @Column(nullable = false, length = 50)
     private String instructor;
+
+    @Column(nullable = false)
     private Integer duracionHoras;
+    
+    @Column(nullable = false, length = 15)
     private String nivel;
+
+    @Column(nullable = false)
     private Integer vacantesDisponibles;
+
+    @Column(nullable = false)
     private Date fecha_registro;
 
     @OneToMany(mappedBy = "curso")
